@@ -24,6 +24,7 @@ unit FMX.Container;
  *                 Edgar Reis
  *                 Ilya S
  *                 Paul Thornton
+ *                 Sven Harazim
  *
  * Originally based on code found here:
  *  - http://delphisorcery.blogspot.com/2011/09/delphi-xe2-heating-up-hype-playing.html
@@ -58,6 +59,7 @@ type
     FOnDestroyForm : TOnDestroyFMXFormEvent;
     FCreateFormCalled : Boolean;
     FHandlingFMXActivation : Boolean;
+    FAllowTabKey : Boolean;
 
     procedure DoOnCreate;
     procedure DoOnDestroy;
@@ -99,6 +101,7 @@ type
     property FireMonkeyForm : FMX.Forms.TCommonCustomForm read FFMXForm write SetFMXForm;
     property OnCreateFMXForm : TOnCreateFMXFormEvent read FOnCreateForm write FOnCreateForm;
     property OnDestroyFMXForm : TOnDestroyFMXFormEvent read FOnDestroyForm write FOnDestroyForm;
+    property AllowTabKey: Boolean read FAllowTabKey write FAllowTabKey default False;
     property Align;
     property Anchors;
     property Constraints;
@@ -237,6 +240,7 @@ begin
   FNewFMXWndProc := nil;
   FCreateFormCalled := false;
   FHandlingFMXActivation := false;
+  FAllowTabKey := False; //if true Tab is handled inside the FMX form
   TabStop := true; // Want to be focused on tabs
 end;
 
@@ -679,6 +683,8 @@ var
 begin
   // From http://stackoverflow.com/questions/5632411/arrow-key-not-working-in-component
   Msg.Result := DLGC_WANTALLKEYS or DLGC_WANTARROWS or DLGC_WANTCHARS;
+  if FAllowTabKey then
+    Msg.Result := Msg.Result or DLGC_WANTTAB;      //handle Tabs
   if Msg.lParam <> 0 then
     begin
       M := PMsg(Msg.lParam);
@@ -733,6 +739,15 @@ begin
     KeyChar := Char(Msg.wParam);
     // Call again to remove any duplicate
     PeekMessage(Msg, 0, WM_CHAR, WM_CHAR, PM_REMOVE);
+    FFMXForm.KeyDown(Key, KeyChar, Shift);
+  end
+  else if not (Message.CharCode in [VK_SHIFT, VK_CONTROL]) then  //Shift and Control are handled by KeyDataToShiftState
+  begin
+    // In some circumstances non-character keycodes go directly to the FMX form (for instance after clicking the
+    // form). In other circumstances we land will land here.
+    // Without the following handling the KeyCodes are lost (eg. arrow keys, function keys etc. wont work)
+    Key := Message.CharCode;
+    KeyChar := #0;
     FFMXForm.KeyDown(Key, KeyChar, Shift);
   end;
 end;

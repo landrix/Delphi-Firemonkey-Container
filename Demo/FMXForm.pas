@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs,
   FMX.StdCtrls, FMX.Effects, FMX.Colors, FMX.TabControl, FMX.Menus,
-  FMX.Filter.Effects, FMX.Edit, FMX.Controls.Presentation;
+  FMX.Filter.Effects, FMX.Edit, FMX.Controls.Presentation,
+  FMX.DialogService;
 
 type
   TFireMonkeyForm = class(TForm)
@@ -39,7 +40,9 @@ implementation
 
 procedure TFireMonkeyForm.ButtonClick(Sender: TObject);
 begin
-  MessageDlg('Hello from ' + (Sender as TComponent).Name, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
+  FMX.DialogService.TDialogService.MessageDialog(
+    'Hello from ' + (Sender as TComponent).Name,
+    TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], TMsgDlgBtn.mbOK,0,nil);
 end;
 
 end.
