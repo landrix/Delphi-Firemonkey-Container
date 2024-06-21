@@ -1,0 +1,146 @@
+object FireMonkeyForm: TFireMonkeyForm
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  Caption = 'Example 2D'
+  ClientHeight = 272
+  ClientWidth = 431
+  Visible = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  DesignerMasterStyle = 0
+  object GroupBox1: TGroupBox
+    Margins.Left = 8.000000000000000000
+    Margins.Top = 8.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 8.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 415.000000000000000000
+    Size.Height = 257.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'FireMonkey'
+    TabOrder = 0
+    object Button1: TButton
+      Position.X = 24.000000000000000000
+      Position.Y = 30.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Button1'
+      TextSettings.Trimming = None
+      OnClick = ButtonClick
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+    end
+    object Button2: TButton
+      Position.X = 24.000000000000000000
+      Position.Y = 70.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Button2'
+      TextSettings.Trimming = None
+      OnClick = ButtonClick
+      object ReflectionEffect1: TReflectionEffect
+        Opacity = 0.500000000000000000
+        Offset = 0
+        Length = 0.500000000000000000
+      end
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 144.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object GlowEffect1: TGlowEffect
+        Softness = 0.400000005960464500
+        GlowColor = claGold
+        Opacity = 0.899999976158142100
+      end
+    end
+    object TabControl1: TTabControl
+      Position.X = 144.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 164.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 3
+      TabPosition = Top
+      Sizes = (
+        257s
+        138s
+        257s
+        138s)
+      object TabItem1: TTabItem
+        CustomIcon = <
+          item
+          end>
+        TextSettings.Trimming = None
+        IsSelected = True
+        Size.Width = 69.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'TabItem1'
+        ExplicitSize.cx = 50.000000000000000000
+        ExplicitSize.cy = 50.000000000000000000
+        object AlphaTrackBar1: TAlphaTrackBar
+          CanParentFocus = True
+          Orientation = Horizontal
+          Position.X = 16.000000000000000000
+          Position.Y = 18.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+        end
+      end
+      object TabItem2: TTabItem
+        CustomIcon = <
+          item
+          end>
+        TextSettings.Trimming = None
+        IsSelected = False
+        Size.Width = 69.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'TabItem2'
+        ExplicitSize.cx = 50.000000000000000000
+        ExplicitSize.cy = 50.000000000000000000
+      end
+    end
+    object Switch1: TSwitch
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 78.000000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+    end
+    object AniIndicator1: TAniIndicator
+      Enabled = True
+      Position.X = 24.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end
